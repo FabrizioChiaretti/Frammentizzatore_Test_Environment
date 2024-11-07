@@ -1,0 +1,33 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+Vagrant.configure("2") do |config|
+
+    config.vm.define "victim" do |v|
+      v.vm.hostname = "netbsd"
+	v.vm.box = "generic/netbsd9"
+	v.vm.box_version = "4.3.2"
+      
+      v.vm.network :private_network, ip: "192.168.122.1",
+      libvirt__network_name: "intnet",
+      libvirt__forward_mode: "veryisolated",
+      libvirt__dhcp_enabled: false,
+      libvirt__guest_ipv6: "yes",
+      libvirt__ipv6_address: "2001:DB8::4",
+      libvirt__ipv6_prefix: "64"
+      
+      v.vm.network :private_network, ip: "192.168.124.1",
+      libvirt__network_name: "extnet",
+      libvirt__forward_mode: "veryisolated",
+      libvirt__dhcp_enabled: false,
+      libvirt__guest_ipv6: "yes",
+      libvirt__ipv6_address: "2001:DB8:0:1::1",
+      libvirt__ipv6_prefix: "64"
+
+      v.vm.provision "shell", inline: <<-SCRIPT
+sudo sysctl -w net.inet.ip.forwarding=1
+sudo sysctl -w net.inet6.ip6.forwarding=1
+sudo /etc/rc.d/pf onestart
+SCRIPT
+   end
+end

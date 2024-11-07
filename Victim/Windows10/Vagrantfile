@@ -1,0 +1,21 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+Vagrant.configure("2") do |config|
+  config.vm.box = "peru/windows-10-enterprise-x64-eval"
+  config.vm.define "windows-10" do |v|
+    v.vm.hostname = "windows-10"
+    
+     v.vm.network :private_network, ip: "192.168.122.2",
+      libvirt__network_name: "intnet",
+      libvirt__forward_mode: "veryisolated",
+      libvirt__dhcp_enabled: false,
+      libvirt__guest_ipv6: "yes",
+      libvirt__ipv6_address: "2001:DB8::3",
+      libvirt__ipv6_prefix: "64"
+      
+    v.vm.provision "shell", path: "prepare_victim.ps1"
+    v.vm.provision "file", source: "nc111nt", destination: "/tmp"
+    # ipv6 address manually assigned
+  end
+end
