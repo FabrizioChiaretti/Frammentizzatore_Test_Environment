@@ -11,7 +11,7 @@ The attacker machine is an Ubuntu 20.04  (**attacker-host**) and the Frammentizz
   - sudo apt install python3-pip,
   - sudo apt install libnetfilter-queue-dev,
   - sudo pip install NetfilterQueue,
-  - sudo apt install python3-scapy.\
+  - sudo apt install python3-scapy.
 
 The Frammentizzatore tool will be located in the vagrant folder and can be run by "sudo -E python3 runner.py" command after the depedencies have been installed.
 
