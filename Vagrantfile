@@ -18,7 +18,7 @@ Vagrant.configure("2") do |config|
       libvirt__ipv6_prefix: "64"
     
     v.vm.provision "shell", path:"prepare_attacker.sh"
-    v.vm.provision "file", source: "Attacker_tool", destination: "."
+    #v.vm.provision "file", source: "Attacker_tool", destination: "."
     
   end
   
@@ -117,16 +117,6 @@ Vagrant.configure("2") do |config|
       libvirt__ipv6_prefix: "64"
       
     v.vm.provision "shell", path: "prepare_victim_windows10.ps1"
-    #v.vm.provision "file", source: "./netcat-windows10/doexec.c", destination: "/tmp"
-    #v.vm.provision "file", source: "./netcat-windows10/generic.h", destination: "/tmp"
-    #v.vm.provision "file", source: "./netcat-windows10/getopt.c", destination: "/tmp"
-    #v.vm.provision "file", source: "./netcat-windows10/getopt.h", destination: "/tmp"
-    #v.vm.provision "file", source: "./netcat-windows10/hobbit.txt", destination: "/tmp"
-    #v.vm.provision "file", source: "./netcat-windows10/license.txt", destination: "/tmp"
-    #v.vm.provision "file", source: "./netcat-windows10/makefile", destination: "/tmp"
-    #v.vm.provision "file", source: "./netcat-windows10/nc.exe", destination: "/tmp"
-    #v.vm.provision "file", source: "./netcat-windows10/netcat.c", destination: "/tmp"
-    #v.vm.provision "file", source: "./netcat-windows10/readme.txt", destination: "/tmp"
    
   end
   
