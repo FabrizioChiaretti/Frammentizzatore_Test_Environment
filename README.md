@@ -5,8 +5,9 @@ Repository whose purpose is to mantain the virtual environment used for performi
 
 The environment is a simple virtual network that is provided by Vagrant tool. The network consists in two subnetworks: the *Intnet* network (2001:db8::/64), that is the victim host's network and the *Extnet* network (2001:db8:0:1::/64), that is the attacker's network. A firewall-router machine is connected to both the subnetworks and it interconnects them, but it's firewall is configured to block the traffic from the attacker network to the victim network. The attacker can leverage on the attacker tool in order to bypass the firewall and to communicate with the victim host.\
 Each machine can be switched on by "vagrant up --provision *machine_name*". The names of the machines are specified in the following.
+It is required to install manually the tool in the "Attacker tool" directory after cloning the repository or manually in the virtual machine.
 
-The attacker machine is an Ubuntu 20.04  (**attacker-host**) and the Frammentizzatore tool is installed at the startup. Its IPv6 address is 2001:db8:0:1::5 and its default gateway is the firewall-router machine (2001:db8:0:1::1). Once the machine is on, it is required to install manually the attacker tool dependancies:
+The attacker machine is an Ubuntu 20.04  (**attacker-host**). Its IPv6 address is 2001:db8:0:1::5 and its default gateway is the firewall-router machine (2001:db8:0:1::1). Once the machine is on, it is required to install manually the attacker tool dependancies:
   - sudo apt-get update,
   - sudo apt install python3-pip,
   - sudo apt install libnetfilter-queue-dev,
